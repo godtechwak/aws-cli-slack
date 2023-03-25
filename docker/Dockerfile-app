@@ -1,0 +1,13 @@
+#python version
+FROM python:3.8-slim
+
+ENV WORKSPACE /workspace
+
+WORKDIR ${WORKSPACE}
+
+COPY ./app ${WORKSPACE}/app/
+RUN pip install -r ./app/requirements.txt
+
+ENV FLASK_APP=./app/app.py
+
+CMD [ "flask", "run", "--host=0.0.0.0", "--port", "5002"]
